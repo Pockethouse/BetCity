@@ -1,0 +1,33 @@
+@model Dictionary<string, List<string>>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leagues</title>
+</head>
+<body>
+<h1>Leagues by Sport</h1>
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var sport in Model)
+        {
+            <li>
+                <strong>@sport.Key</strong> <!-- Sport name -->
+                <ul>
+                    @foreach (var league in sport.Value)
+                    {
+                        <li>@league</li> <!-- League name -->
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No leagues available.</p>
+}
+</body>
+</html>

@@ -20,6 +20,21 @@ public class SportsEventService
         
     }
 
+    public async Task<Dictionary<string, List<string>>> GetLeaguesAsync()
+    {
+        var endpoint = _apiSetting.BaseUrl + _apiSetting.Endpoints.GetLeagues;
+        var jsonResponse = await _apiService.SendGetRequestAsync(endpoint);
+
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+        };
+
+        // Deserialize the response into a dictionary
+        return JsonSerializer.Deserialize<Dictionary<string, List<string>>>(jsonResponse, options);
+    }
+    
     // Fetches a list of sport events
     public async Task<List<string>> GetSportsAsync()
     {
