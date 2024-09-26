@@ -1,0 +1,49 @@
+@model BetCity.Models.EventMarket
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Markets for @Model.eventName</title>
+</head>
+<body>
+<h1>Markets for Event: @Model.eventName</h1>
+<p><strong>Teams:</strong> @Model.team1 vs. @Model.team2</p>
+<p><strong>Score:</strong> @Model.score</p>
+<p><strong>League:</strong> @Model.liga</p>
+<p><strong>Time:</strong> @Model.timer</p>
+    
+<h2>Available Markets</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Market Name</th>
+        <th>Outcome</th>
+        <th>Odds</th>
+        <th>Coefficient</th>
+        <th>Group</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.markets != null && Model.markets.Any())
+    {
+        foreach (var market in Model.markets)
+        {
+            <tr>
+                <td>@market.Na</td>         <!-- Market name -->
+                <td>@market.N2</td>         <!-- Outcome name or description -->
+                <td>@market.Od</td>         <!-- Odds -->
+                <td>@market.Coef</td>       <!-- Coefficient -->
+                <td>@market.Group</td>      <!-- Market group -->
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="5">No markets available for this event.</td>
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
+</html>

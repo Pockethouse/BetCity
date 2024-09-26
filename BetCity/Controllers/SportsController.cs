@@ -19,7 +19,11 @@ namespace BetCity.Controllers
             var leagues = await _sportsEventService.GetLeaguesAsync();
             return View(leagues);
         }
-       
+        public async Task<IActionResult> EventMarkets(string eventId)
+        {
+            var eventMarket = await _sportsEventService.GetEventWithMarketsAsync(eventId);
+            return View(eventMarket);
+        }
         
         public async Task<IActionResult> Events(string sportName)
         {

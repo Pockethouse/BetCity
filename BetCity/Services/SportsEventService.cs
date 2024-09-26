@@ -52,7 +52,20 @@ public class SportsEventService
     }
     
     
+    public async Task<EventMarket> GetEventWithMarketsAsync(string eventId)
+    {
+        var endpoint = _apiSetting.BaseUrl + _apiSetting.Endpoints.GetEventWithMarkets.Replace("{eventId}", eventId);
+        var jsonResponse = await _apiService.SendGetRequestAsync(endpoint);
 
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+        };
+
+        // Deserialize the response into an EventMarket object
+        return JsonSerializer.Deserialize<EventMarket>(jsonResponse, options);
+    }
     
 
     // Fetch a single event by sport name
