@@ -1,0 +1,44 @@
+@model List<BetCity.Models.SportsEvent>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sport Events</title>
+</head>
+<body>
+<h1>Events for @ViewBag.SportName</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Event Name</th>
+        <th>Team 1</th>
+        <th>Team 2</th>
+        <th>Score</th>
+        <th>Timer</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var eventItem in Model)
+        {
+            <tr>
+                <td>@eventItem.eventName</td>
+                <td>@eventItem.team1</td>
+                <td>@eventItem.team2</td>
+                <td>@eventItem.score</td>
+                <td>@eventItem.timer</td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="5">No events available for this sport.</td>
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
+</html>

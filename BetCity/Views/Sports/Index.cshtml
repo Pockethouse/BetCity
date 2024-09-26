@@ -1,0 +1,29 @@
+@model List<string>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sports List</title>
+</head>
+<body>
+<h1>Sports List</h1>
+
+<ul>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var sport in Model)
+        {
+            <li>
+                <a href="@Url.Action("Events", "Sports", new { sportName = sport })">
+                    @sport
+                </a>
+            </li>
+        }
+    }
+    else
+    {
+        <li>No sports available.</li>
+    }
+</ul>
+</body>
+</html>
