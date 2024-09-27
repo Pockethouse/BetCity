@@ -7,8 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();  // Add console logging
 
+
+
+builder.Services.AddMemoryCache();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    // This points to your Redis server, which by default is localhost at port 6379
+    options.Configuration = "localhost:6379"; // Replace with your Redis server if deployed
+    options.InstanceName = "BetCity_"; // This will prefix all cache keys
+});
 
 // Register BetCityApiService with HttpClient
 builder.Services.AddHttpClient<BetCityApiService>(client =>
