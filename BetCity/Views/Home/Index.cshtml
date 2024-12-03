@@ -1,8 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model List<BetCity.Models.SportsEvent>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1>Welcome to BetCity</h1>
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var e in Model.Take(6))
+        {
+            <div class="col-md-4">
+                <div class="event-panel">
+                    <h3>@e.eventName</h3>
+                    <p><strong>Teams:</strong> @e.team1 vs. @e.team2</p>
+                    <p><strong>Score:</strong> @e.score</p>
+                    <p><strong>Time:</strong> @e.timer</p>
+                    <a href="@Url.Action("EventMarkets", "Sports", new { eventId = e.eventId })" class="btn btn-sm btn-success">View Markets</a>
+                    <a href="@Url.Action("Events", "Sports", new { sportName = e.sport })" class="btn btn-sm btn-primary">View Sports</a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-center text-muted">No events available at the moment.</p>
+    }
 </div>

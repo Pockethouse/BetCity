@@ -1,0 +1,58 @@
+body {
+    background-color: #1e1e2f; /* Dark blue background */
+    color: #ffffff; /* White text */
+}
+
+h1 {
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.events-table-container {
+    background-color: #292943;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.events-table {
+    background-color: #292943;
+    color: #d1d1e1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.events-table th {
+    background-color: #343450;
+    color: #ffffff;
+    text-align: left; /* Left-align column headers */
+    font-weight: bold;
+    padding: 10px; /* Add padding for better spacing */
+}
+
+.events-table td {
+    text-align: left; /* Left-align table data */
+    color: #d1d1e1;
+    background-color: #292943;
+    padding: 10px; /* Add padding for consistent spacing */
+}
+
+.events-table td a {
+    color: #ffffff; /* Ensure links remain visible */
+    text-decoration: none;
+}
+
+.events-table td a:hover {
+    color: #aaaaaa; /* Lighter gray on hover */
+}
+
+.btn-primary {
+    background-color: #4CAF50; /* Green button background */
+    color: #ffffff; /* White button text */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #3e8e41; /* Darker green */
+    color: #ffffff; /* Keep white text */
+}

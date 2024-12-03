@@ -3,31 +3,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Leagues</title>
+    <title>Leagues by Sport</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: #d1d1e1;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .category-header {
+            color: #4caf50; /* Highlighted color for category headers */
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .league-box {
+            background-color: #292943;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .scroll-pane {
+            max-height: 200px; /* Set the height of the scroll pane */
+            overflow-y: scroll; /* Make scrollbar visible */
+            padding: 15px;
+        }
+
+        /* Styling the scrollbar */
+        .scroll-pane::-webkit-scrollbar {
+            width: 12px; /* Width of the scrollbar */
+        }
+
+        .scroll-pane::-webkit-scrollbar-thumb {
+            background-color: #4caf50; /* Scrollbar thumb color */
+            border-radius: 10px;
+        }
+
+        .scroll-pane::-webkit-scrollbar-track {
+            background-color: #1e1e2f; /* Scrollbar track color */
+        }
+
+        .league-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        /* Alternating row colors */
+        .league-list li:nth-child(odd) {
+            background-color: #343450;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .league-list li:nth-child(even) {
+            background-color: #292943;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .league-list li {
+            margin-bottom: 5px;
+            color: #d1d1e1;
+        }
+    </style>
 </head>
 <body>
-<h1>Leagues by Sport</h1>
-
-@if (Model != null && Model.Any())
-{
-    <ul>
+    <div class="container mt-4">
+        <h1>Leagues by Sport</h1>
         @foreach (var sport in Model)
         {
-            <li>
-                <strong>@sport.Key</strong> <!-- Sport name -->
-                <ul>
-                    @foreach (var league in sport.Value)
-                    {
-                        <li>@league</li> <!-- League name -->
-                    }
-                </ul>
-            </li>
+            <div class="league-box">
+                <h2 class="category-header">@sport.Key</h2> <!-- Sport category outside the scroll pane -->
+                <div class="scroll-pane">
+                    <ul class="league-list">
+                        @foreach (var league in sport.Value)
+                        {
+                            <li>@league</li>
+                        }
+                    </ul>
+                </div>
+            </div>
         }
-    </ul>
-}
-else
-{
-    <p>No leagues available.</p>
-}
+    </div>
 </body>
 </html>

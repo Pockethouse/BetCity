@@ -16,14 +16,36 @@ namespace BetCity.Controllers
     
         public async Task<IActionResult> Leagues()
         {
-            var leagues = await _sportsEventService.GetLeaguesAsync();
-            return View(leagues);
+            var allLeagues = await _sportsEventService.GetLeaguesAsync();
+
+            if (allLeagues == null || !allLeagues.Any())
+            {
+                return View(new Dictionary<string, List<string>>());
+            }
+
+            // Prepare data directly for the view
+            return View(allLeagues);
         }
         public async Task<IActionResult> EventMarkets(string eventId)
         {
             var eventMarket = await _sportsEventService.GetEventWithMarketsAsync(eventId);
+
+            if (eventMarket == null || eventMarket.markets == null)
+            {
+                eventMarket = new EventMarket
+                {
+                    eventName = "Unknown Event",
+                    team1 = "Unknown Team 1",
+                    team2 = "Unknown Team 2",
+                    score = "N/A",
+                    timer = "N/A",
+                    markets = new List<Market>()
+                };
+            }
+
             return View(eventMarket);
         }
+
         
         public async Task<IActionResult> Events(string sportName)
         {

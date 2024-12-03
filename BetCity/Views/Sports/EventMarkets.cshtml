@@ -9,45 +9,46 @@
         body {
             background-color: #1e1e2f;
             color: #d1d1e1;
+            font-family: Arial, sans-serif;
         }
+
         h1, h2 {
             color: #ffffff;
         }
+
         .event-details {
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 15px;
             background-color: #292943;
             border-radius: 10px;
         }
+
         .markets-table {
             margin-top: 20px;
             background-color: #292943;
             border-radius: 10px;
-            overflow: hidden;
         }
-        .markets-table th, .markets-table td {
-            text-align: center;
-            color: #ffffff;
-        }
+
         .markets-table th {
             background-color: #343450;
+            color: #fff;
             font-weight: bold;
         }
+
         .markets-table td {
-            background-color: #292943;
+            color: #d1d1e1;
         }
-        .markets-table td a {
-            color: #4caf50;
-            text-decoration: none;
+
+        .markets-table td.highlight {
+            background-color: #4caf50;
+            font-weight: bold;
+            color: #fff;
         }
-        .markets-table td a:hover {
-            color: #76ff03;
-        }
-        .group-title {
-            text-transform: uppercase;
-            font-size: 0.9rem;
+
+        .no-data {
+            text-align: center;
             color: #a1a1b6;
-            margin: 5px 0;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -78,11 +79,13 @@
                     @foreach (var market in Model.markets)
                     {
                         <tr>
-                            <td>@market.Na</td> <!-- Market name -->
-                            <td>@market.N2</td> <!-- Outcome -->
-                            <td>@market.Od</td> <!-- Odds -->
-                            <td>@market.Coef</td> <!-- Coefficient -->
-                            <td>@market.Group</td> <!-- Group -->
+                            <td>@(string.IsNullOrWhiteSpace(market.Na) ? "No Market Name" : market.Na)</td>
+                            <td>@(string.IsNullOrWhiteSpace(market.N2) ? "No Outcome" : market.N2)</td>
+                            <td>@(string.IsNullOrWhiteSpace(market.Od) ? "N/A" : market.Od)</td>
+                            <td class="@(market.Coef > 10 ? "highlight" : "")">
+                                @market.Coef
+                            </td>
+                            <td>@(string.IsNullOrWhiteSpace(market.Group) ? "No Group" : market.Group)</td>
                         </tr>
                     }
                 </tbody>
@@ -90,7 +93,7 @@
         }
         else
         {
-            <p class="text-center">No markets available for this event.</p>
+            <p class="no-data">No markets available for this event.</p>
         }
     </div>
 </body>

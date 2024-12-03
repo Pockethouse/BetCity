@@ -1,57 +1,68 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BetCity</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    <link rel="stylesheet" href="~/css/Solar.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/BetCity.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Solar.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: #d1d1e1;
+        }
+        .navbar {
+            background-color: #292943;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .navbar-brand:hover, .nav-link:hover {
+            color: #4caf50 !important;
+        }
+        footer {
+            background-color: #292943;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #76ff03;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Sports" asp-action="Index">BetCity</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                    <!-- New Link to Leagues -->
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-controller="Sports" asp-action="Leagues">Leagues</a>
-                    </li>
-                    <!-- New Link to Events Markets (you'll need to pass an eventId as an example here) -->
-                   <li class="nav-item">
-                       <a class="nav-link text-light" asp-area="" asp-controller="Sports" asp-action="EventMarkets" asp-route-eventId="6V161695977C1A_1_1">Event Markets</a>
-                   </li>
-
-                </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">BetCity</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Sports" asp-action="Index">Sports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Sports" asp-action="Leagues">Leagues</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
-
-<div class="container">
-    <main role="main" class="pb-3">
+        </nav>
+    </header>
+    <main class="container mt-4">
         @RenderBody()
     </main>
-</div>
-
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
+    
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

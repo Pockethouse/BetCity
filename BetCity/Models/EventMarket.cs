@@ -13,6 +13,5 @@ public class EventMarket
     public string team2 { get; set; }
     public string marketFI { get; set; }
     public string evLink { get; set; }
-
-    public List<Market> markets { get; set; }
+    public List<Market> markets { get; set; } = new();
 }
