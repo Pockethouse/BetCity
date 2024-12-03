@@ -4,46 +4,94 @@
 <html>
 <head>
     <title>Markets for @Model.eventName</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: #d1d1e1;
+        }
+        h1, h2 {
+            color: #ffffff;
+        }
+        .event-details {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #292943;
+            border-radius: 10px;
+        }
+        .markets-table {
+            margin-top: 20px;
+            background-color: #292943;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .markets-table th, .markets-table td {
+            text-align: center;
+            color: #ffffff;
+        }
+        .markets-table th {
+            background-color: #343450;
+            font-weight: bold;
+        }
+        .markets-table td {
+            background-color: #292943;
+        }
+        .markets-table td a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+        .markets-table td a:hover {
+            color: #76ff03;
+        }
+        .group-title {
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #a1a1b6;
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-<h1>Markets for Event: @Model.eventName</h1>
-<p><strong>Teams:</strong> @Model.team1 vs. @Model.team2</p>
-<p><strong>Score:</strong> @Model.score</p>
-<p><strong>League:</strong> @Model.liga</p>
-<p><strong>Time:</strong> @Model.timer</p>
-    
-<h2>Available Markets</h2>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Market Name</th>
-        <th>Outcome</th>
-        <th>Odds</th>
-        <th>Coefficient</th>
-        <th>Group</th>
-    </tr>
-    </thead>
-    <tbody>
-    @if (Model.markets != null && Model.markets.Any())
-    {
-        foreach (var market in Model.markets)
+    <div class="container mt-4">
+        <h1>Markets for Event: @Model.eventName</h1>
+        <div class="event-details">
+            <p><strong>Teams:</strong> @Model.team1 vs. @Model.team2</p>
+            <p><strong>Score:</strong> @Model.score</p>
+            <p><strong>League:</strong> @Model.liga</p>
+            <p><strong>Time:</strong> @Model.timer</p>
+        </div>
+
+        <h2>Available Markets</h2>
+        @if (Model.markets != null && Model.markets.Any())
         {
-            <tr>
-                <td>@market.Na</td>         <!-- Market name -->
-                <td>@market.N2</td>         <!-- Outcome name or description -->
-                <td>@market.Od</td>         <!-- Odds -->
-                <td>@market.Coef</td>       <!-- Coefficient -->
-                <td>@market.Group</td>      <!-- Market group -->
-            </tr>
+            <table class="table table-hover markets-table">
+                <thead>
+                    <tr>
+                        <th>Market Name</th>
+                        <th>Outcome</th>
+                        <th>Odds</th>
+                        <th>Coefficient</th>
+                        <th>Group</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var market in Model.markets)
+                    {
+                        <tr>
+                            <td>@market.Na</td> <!-- Market name -->
+                            <td>@market.N2</td> <!-- Outcome -->
+                            <td>@market.Od</td> <!-- Odds -->
+                            <td>@market.Coef</td> <!-- Coefficient -->
+                            <td>@market.Group</td> <!-- Group -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
         }
-    }
-    else
-    {
-        <tr>
-            <td colspan="5">No markets available for this event.</td>
-        </tr>
-    }
-    </tbody>
-</table>
+        else
+        {
+            <p class="text-center">No markets available for this event.</p>
+        }
+    </div>
 </body>
 </html>
